@@ -1,6 +1,7 @@
 const state = {
   products: [],
   contactEmail: 'Fantasyflagstb@gmail.com',
+  payments: { provider: 'stripePaymentLink', enabled: false },
   shopify: { enabled: false },
   activeProduct: null,
 };
@@ -17,6 +18,7 @@ async function loadData() {
   const data = await response.json();
   state.products = Array.isArray(data.products) ? data.products : [];
   state.contactEmail = data.contactEmail || state.contactEmail;
+  state.payments = data.payments || state.payments;
   state.shopify = data.shopify || state.shopify;
 }
 
@@ -57,14 +59,30 @@ function findProduct(handle) {
 }
 
 function checkoutAvailableFor(product) {
+  const payments = state.payments || {};
+  if (product?.purchaseMode !== 'checkout') return false;
+  if (payments.enabled && payments.provider === 'stripePaymentLink') {
+    return Boolean(product.stripePaymentLink);
+  }
   const cfg = state.shopify || {};
   return Boolean(
-    product?.purchaseMode === 'checkout' &&
+    payments.enabled &&
+    payments.provider === 'shopify' &&
     product.shopifyVariantId &&
     cfg.enabled &&
     cfg.shopDomain &&
     cfg.storefrontAccessToken
   );
+}
+
+function paymentReference(product, customisation) {
+  const parts = [
+    'FF',
+    product.handle || 'order',
+    customisation.season || new Date().getFullYear(),
+    Date.now().toString(36).toUpperCase(),
+  ];
+  return parts.join('-').replace(/[^A-Z0-9-]/gi, '').slice(0, 80);
 }
 
 function setFieldVisibility(product) {
@@ -170,6 +188,23 @@ async function createShopifyCart(product, customisation) {
   return checkoutUrl;
 }
 
+function createStripePaymentLink(product, customisation) {
+  if (!checkoutAvailableFor(product) || !product.stripePaymentLink) {
+    throw new Error('Secure checkout is unavailable for this item.');
+  }
+  const url = new URL(product.stripePaymentLink);
+  if (customisation.customerEmail) url.searchParams.set('prefilled_email', customisation.customerEmail);
+  url.searchParams.set('client_reference_id', paymentReference(product, customisation));
+  return url.toString();
+}
+
+async function createCheckoutUrl(product, customisation) {
+  const payments = state.payments || {};
+  if (payments.provider === 'stripePaymentLink') return createStripePaymentLink(product, customisation);
+  if (payments.provider === 'shopify') return createShopifyCart(product, customisation);
+  throw new Error('Secure checkout is unavailable for this item.');
+}
+
 function enquiryText(product, customisation) {
   return [
     `Hi Fantasy Flags,`,
@@ -215,8 +250,8 @@ async function continueCheckout() {
   const status = $('#modal-status');
   status.textContent = 'Preparing checkout details…';
   try {
-    const checkoutUrl = await createShopifyCart(product, customisation);
-    status.textContent = 'Opening Shopify checkout…';
+    const checkoutUrl = await createCheckoutUrl(product, customisation);
+    status.textContent = 'Opening secure checkout…';
     window.location.href = checkoutUrl;
   } catch (error) {
     status.textContent = `${error.message} For now, use “Email Details Instead” and we’ll follow up manually.`;
@@ -274,3 +309,11 @@ init().catch((error) => {
   const target = $('#product-list');
   if (target) target.innerHTML = `<p class="load-error">Awards could not be loaded. Please <a href="mailto:${esc(state.contactEmail)}">email Fantasy Flags</a> and we'll help directly.</p>`;
 });
+
+window.FantasyFlags = {
+  buildCheckoutUrlForActiveProduct() {
+    const product = state.activeProduct;
+    if (!product) throw new Error('No active product.');
+    return createCheckoutUrl(product, collectCustomisation());
+  },
+};

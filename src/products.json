@@ -1,5 +1,10 @@
 {
   "contactEmail": "Fantasyflagstb@gmail.com",
+  "payments": {
+    "provider": "stripePaymentLink",
+    "enabled": false,
+    "note": "Enable after Kieron creates the live Stripe Payment Link in the Trophy Brothers Stripe account. Payment Links should collect any required engraving fields in Stripe or be paired with the Fantasy Flags enquiry email."
+  },
   "shopify": {
     "shopDomain": "",
     "storefrontAccessToken": "",
@@ -21,6 +26,7 @@
       "imageMode": "real",
       "cta": "Order medal",
       "purchaseMode": "checkout",
+      "stripePaymentLink": "",
       "shopifyVariantId": "",
       "requiresCustomization": true,
       "fields": ["leagueName", "season", "neededBy", "notes"]
