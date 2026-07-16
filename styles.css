@@ -81,8 +81,8 @@ button{cursor:pointer}
 .shop-media{position:relative;height:250px;min-height:250px;background:linear-gradient(145deg,#dce7ef,#f6f9fb);overflow:hidden;display:grid;place-items:center}
 .shop-card-label{position:absolute;z-index:2;top:12px;left:12px;padding:7px 9px;background:var(--navy);color:var(--white);font-size:8px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
 .shop-media img{width:100%;height:100%;object-fit:contain;padding:14px;filter:drop-shadow(0 16px 20px rgba(7,21,39,.22))}
-.shop-card[data-product="premiership-medal"] .shop-media{height:410px;min-height:410px}
-.shop-card[data-product="premiership-medal"] .shop-media img{object-fit:cover;object-position:center 100%;padding:0}
+.shop-card[data-product="premiership-medal"] .shop-media{height:450px;min-height:450px}
+.shop-card[data-product="premiership-medal"] .shop-media img{object-fit:contain;object-position:center bottom;padding:10px 8px 0}
 .shop-card[data-product="premiership-display-case"] .shop-media img{object-fit:cover;object-position:center 42%;padding:0}
 .placeholder-art{width:100%;height:100%;min-height:100%;padding:55px 20px 22px;display:grid;place-items:center;background:linear-gradient(145deg,var(--navy),var(--navy-2));color:var(--white);white-space:pre-line;text-align:center;font-size:28px;font-weight:900;line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
 .placeholder-art.empty{background:linear-gradient(145deg,#0c223f,#1967ff)}
