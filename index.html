@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/products/premiership-medal-square.png" type="image/png" />
-  <link rel="stylesheet" href="styles.css?v=34.0" />
+  <link rel="stylesheet" href="styles.css?v=35.0" />
 </head>
 <body>
   <a class="skip-link" href="#top">Skip to main content</a>
@@ -50,21 +50,26 @@
       <figure class="hero-medal-wrap">
         <img src="assets/products/premiership-medal-hero.webp" width="463" height="694" fetchpriority="high" decoding="async" alt="Fantasy Flags premiership medal with blue ribbon" />
       </figure>
-      <div class="league-room" aria-label="Fantasy Flags league room live panel">
-        <div class="room-head"><strong>League Room Live</strong><span>Trade Court + checkout</span></div>
-        <div class="room-feed">
-          <article class="room-comment">
+      <div class="league-room" aria-label="Fantasy Flags Trade Court live panel">
+        <div class="room-head"><strong>Trade Court Live</strong><span>Latest cases</span></div>
+        <div class="room-feed" data-trade-court-list>
+          <a class="room-comment room-link" href="https://x.com/FantasyFlagsAU/status/2077361580526956901" target="_blank" rel="noopener noreferrer">
             <span class="room-avatar" aria-hidden="true">TC</span>
-            <div><strong>Latest Trade Court</strong><p>Xerri + Drew for Anderson, Rankine + Cripps. Vote on the verdict.</p></div>
-            <span class="room-status">Vote</span>
-          </article>
-          <article class="room-comment order-message">
-            <span class="room-avatar finals" aria-hidden="true">🏅</span>
-            <div><strong>Premiership Medal</strong><p>$25 + postage. Team name and year engraved on the reverse.</p></div>
-            <span class="room-status">Checkout</span>
-          </article>
+            <div><strong>Xerri + Drew</strong><p>for Anderson, Rankine + Cripps. Vote on the verdict.</p></div>
+            <span class="room-status">Latest</span>
+          </a>
+          <a class="room-comment room-link" href="https://x.com/FantasyFlagsAU/status/2076647241985781854" target="_blank" rel="noopener noreferrer">
+            <span class="room-avatar" aria-hidden="true">TC</span>
+            <div><strong>Jarman Impey</strong><p>for Jack Macrae + Nick Vlastuin. Fair deal or fraud?</p></div>
+            <span class="room-status">Court</span>
+          </a>
+          <a class="room-comment room-link" href="https://x.com/FantasyFlagsAU/status/2075790761799700526" target="_blank" rel="noopener noreferrer">
+            <span class="room-avatar" aria-hidden="true">TC</span>
+            <div><strong>Darcy Wilson</strong><p>for Dan Houston. The jury is still out.</p></div>
+            <span class="room-status">Court</span>
+          </a>
         </div>
-        <a class="room-action" href="https://x.com/FantasyFlagsAU/status/2077361580526956901" target="_blank" rel="noopener noreferrer">Vote in Trade Court <span>→</span></a>
+        <a class="room-action" data-trade-court-cta href="https://x.com/FantasyFlagsAU" target="_blank" rel="noopener noreferrer">View more on X <span>→</span></a>
       </div>
     </section>
 
@@ -167,6 +172,6 @@
     <button type="button" data-open-product="custom-league-pack">Build a league pack</button>
   </div>
 
-  <script src="app.js?v=33.0" defer></script>
+  <script src="app.js?v=34.0" defer></script>
 </body>
 </html>

@@ -59,6 +59,8 @@ button{cursor:pointer}
 .room-head span{color:var(--muted);font-size:9px}
 .room-feed{display:grid}
 .room-comment{min-width:0;min-height:59px;padding:9px 11px;display:grid;grid-template-columns:31px minmax(0,1fr) auto;align-items:center;gap:9px;border-bottom:1px solid var(--line)}
+.room-link{color:inherit;text-decoration:none}
+.room-link:hover strong{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 .room-avatar{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:var(--white);font-size:8px;font-weight:900}
 .room-avatar.finals{background:var(--blue)}
 .room-comment div{min-width:0}

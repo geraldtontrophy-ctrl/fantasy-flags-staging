@@ -1,5 +1,7 @@
 const state = {
   products: [],
+  tradeCourts: [],
+  tradeCourtProfileUrl: 'https://x.com/FantasyFlagsAU',
   contactEmail: 'Fantasyflagstb@gmail.com',
   payments: { provider: 'stripePaymentLink', enabled: false },
   shopify: { enabled: false },
@@ -20,6 +22,16 @@ async function loadData() {
   state.contactEmail = data.contactEmail || state.contactEmail;
   state.payments = data.payments || state.payments;
   state.shopify = data.shopify || state.shopify;
+  try {
+    const tradeCourtResponse = await fetch('src/trade-courts.json', { cache: 'no-store' });
+    if (tradeCourtResponse.ok) {
+      const tradeCourtData = await tradeCourtResponse.json();
+      state.tradeCourts = Array.isArray(tradeCourtData.items) ? tradeCourtData.items : [];
+      state.tradeCourtProfileUrl = tradeCourtData.profileUrl || state.tradeCourtProfileUrl;
+    }
+  } catch (error) {
+    console.warn('Trade Court feed unavailable; using static fallback', error);
+  }
 }
 
 function mediaFor(product) {
@@ -52,6 +64,22 @@ function renderProducts() {
   const target = $('#product-list');
   if (!target) return;
   target.innerHTML = state.products.map(productCard).join('');
+}
+
+function tradeCourtItem(item) {
+  return `<a class="room-comment room-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">
+    <span class="room-avatar" aria-hidden="true">TC</span>
+    <div><strong>${esc(item.title)}</strong><p>${esc(item.summary)}</p></div>
+    <span class="room-status">${esc(item.status || 'Court')}</span>
+  </a>`;
+}
+
+function renderTradeCourts() {
+  const target = $('[data-trade-court-list]');
+  if (!target || !state.tradeCourts.length) return;
+  target.innerHTML = state.tradeCourts.slice(0, 3).map(tradeCourtItem).join('');
+  const cta = $('[data-trade-court-cta]');
+  if (cta) cta.href = state.tradeCourtProfileUrl;
 }
 
 function findProduct(handle) {
@@ -300,6 +328,7 @@ async function init() {
   bindEvents();
   await loadData();
   renderProducts();
+  renderTradeCourts();
   const checkoutButton = $('#continue-checkout');
   if (checkoutButton) checkoutButton.hidden = true;
 }
