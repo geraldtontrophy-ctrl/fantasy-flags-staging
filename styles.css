@@ -148,18 +148,18 @@ button{cursor:pointer}
   .top-strip{height:32px;justify-content:space-between;padding:0 4vw}
   .site-nav{height:76px;padding:0 4vw}
   .wordmark{font-size:29px}
-  .hero-lovable{min-height:calc(100vh - 108px);padding:9vh 4vw 8vh}
+  .hero-lovable{min-height:calc(100vh - 108px);padding:9vh 5vw 8vh}
   .hero-kicker{font-size:11px}
-  .hero-lovable h1{margin-top:24px;max-width:870px;font-size:clamp(76px,7.2vw,116px)}
+  .hero-lovable h1{margin-top:24px;max-width:620px;font-size:clamp(74px,6.4vw,104px)}
   .hero-lovable h1 em{display:inline;font-size:inherit;letter-spacing:inherit;white-space:normal}
-  .hero-copy{max-width:560px;font-size:18px}
+  .hero-copy{max-width:500px;font-size:18px}
   .hero-actions{margin-top:28px;max-width:none}
   .order-path{max-width:500px;margin-top:22px;padding:14px 0}
   .order-path strong{font-size:16px}
   .order-path span{font-size:11px}
-  .hero-medal-wrap{left:auto;right:4vw;top:2vh;width:min(38vw,560px);height:75vh;transform:none}
+  .hero-medal-wrap{left:56%;right:auto;top:-1px;width:min(44vw,640px);height:calc(100vh - 108px);transform:translateX(-50%)}
   .hero-medal-wrap img{transform:rotate(2deg)}
-  .league-room{position:relative;left:auto;right:auto;bottom:auto;width:min(520px,48vw);margin-top:36px}
+  .league-room{position:absolute;left:5vw;right:auto;bottom:5vh;width:430px;margin-top:0}
   .room-comment{min-height:62px;padding:10px 12px}
   .range-intro{padding:95px 5vw 36px}
   .range-intro h2,.proof-section h2{font-size:58px}
@@ -197,8 +197,8 @@ button{cursor:pointer}
 }
 @media(min-width:1180px){
   .hero-lovable{padding-left:5vw;padding-right:5vw}
-  .hero-medal-wrap{right:7vw}
-  .league-room{right:auto}
+  .hero-medal-wrap{left:58%;width:min(46vw,670px)}
+  .league-room{left:5vw;right:auto}
 }
 @media(max-width:370px){
   .hero-lovable{padding:470px 11px 20px}
