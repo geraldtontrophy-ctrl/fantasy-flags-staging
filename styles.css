@@ -119,6 +119,7 @@ button{cursor:pointer}
 .ladder-card li>span{width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--navy);color:var(--white);font-size:10px;font-weight:900}
 .ladder-card li strong{font-size:11px;text-transform:uppercase;letter-spacing:.02em}
 .ladder-card li em{color:var(--muted);font-size:8px;font-style:normal;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.ladder-source{margin:14px 0 0;color:#9fb0c2;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
 .community-cta{margin-top:18px;min-height:48px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;background:var(--lime);color:var(--ink);text-decoration:none;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
 .community-cta span{margin-left:8px}
 .proof-section{padding:65px 16px;background:linear-gradient(145deg,var(--navy),var(--navy-2));color:var(--white)}
