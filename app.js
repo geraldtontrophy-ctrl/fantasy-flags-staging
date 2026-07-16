@@ -36,10 +36,44 @@ async function loadData() {
 
 function mediaFor(product) {
   if (product.imageMode === 'real' && product.image) {
-    return `<img src="${esc(product.image)}" alt="${esc(product.name)}" loading="lazy" />`;
+    const gallery = Array.isArray(product.gallery) && product.gallery.length ? product.gallery : [product.image];
+    const image = gallery[0] || product.image;
+    if (gallery.length > 1) {
+      const dots = gallery.map((_, index) => `<button type="button" class="gallery-dot${index === 0 ? ' active' : ''}" data-gallery-dot="${esc(product.handle)}" data-gallery-index="${index}" aria-label="Show ${esc(product.name)} image ${index + 1}"></button>`).join('');
+      return `<div class="product-gallery" data-gallery="${esc(product.handle)}" data-gallery-index="0">
+        <img src="${esc(image)}" alt="${esc(product.name)} image 1 of ${gallery.length}" loading="lazy" data-gallery-image />
+        <button type="button" class="gallery-nav prev" data-gallery-prev="${esc(product.handle)}" aria-label="Previous ${esc(product.name)} image">‹</button>
+        <button type="button" class="gallery-nav next" data-gallery-next="${esc(product.handle)}" aria-label="Next ${esc(product.name)} image">›</button>
+        <div class="gallery-dots" aria-label="${esc(product.name)} image gallery">${dots}</div>
+      </div>`;
+    }
+    return `<img src="${esc(image)}" alt="${esc(product.name)}" loading="lazy" />`;
   }
   const cls = product.imageMode === 'empty' ? 'placeholder-art empty' : 'placeholder-art';
   return `<div class="${cls}" aria-label="Photography placeholder for ${esc(product.name)}">${esc(product.placeholderText || product.name)}</div>`;
+}
+
+function galleryImages(product) {
+  return Array.isArray(product?.gallery) && product.gallery.length ? product.gallery : product?.image ? [product.image] : [];
+}
+
+function updateGallery(handle, nextIndex) {
+  const product = findProduct(handle);
+  const images = galleryImages(product);
+  const gallery = $(`[data-gallery="${CSS.escape(handle)}"]`);
+  if (!gallery || images.length < 2) return;
+  const index = ((nextIndex % images.length) + images.length) % images.length;
+  gallery.dataset.galleryIndex = String(index);
+  const image = $('[data-gallery-image]', gallery);
+  if (image) {
+    image.src = images[index];
+    image.alt = `${product.name} image ${index + 1} of ${images.length}`;
+  }
+  $$('[data-gallery-dot]', gallery).forEach((dot) => {
+    const active = Number(dot.dataset.galleryIndex) === index;
+    dot.classList.toggle('active', active);
+    dot.setAttribute('aria-current', active ? 'true' : 'false');
+  });
 }
 
 function productCard(product) {
@@ -308,6 +342,18 @@ async function copyCustomisation() {
 
 function bindEvents() {
   document.addEventListener('click', (event) => {
+    const previous = event.target.closest('[data-gallery-prev]');
+    const next = event.target.closest('[data-gallery-next]');
+    const dot = event.target.closest('[data-gallery-dot]');
+    if (previous || next || dot) {
+      event.preventDefault();
+      const handle = previous?.dataset.galleryPrev || next?.dataset.galleryNext || dot?.dataset.galleryDot;
+      const gallery = $(`[data-gallery="${CSS.escape(handle)}"]`);
+      const current = Number(gallery?.dataset.galleryIndex || 0);
+      const index = dot ? Number(dot.dataset.galleryIndex) : current + (next ? 1 : -1);
+      updateGallery(handle, index);
+      return;
+    }
     const trigger = event.target.closest('[data-open-product]');
     if (trigger) openProduct(trigger.dataset.openProduct);
   });

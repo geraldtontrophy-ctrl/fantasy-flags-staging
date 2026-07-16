@@ -23,6 +23,11 @@
       "priceText": "$25.00",
       "description": "Medal only, with your team or league name and year engraved on the reverse. No display case.",
       "image": "assets/products/premiership-medal-product.webp",
+      "gallery": [
+        "assets/products/premiership-medal-product.webp",
+        "assets/products/premiership-medal-square.png",
+        "assets/products/premiership-medal-hero.webp"
+      ],
       "imageMode": "real",
       "cta": "Order medal",
       "purchaseMode": "checkout",
@@ -40,6 +45,12 @@
       "priceText": "$40 + postage",
       "description": "Premiership medal with a personalised display case. Your full player list and final score are engraved into the lid.",
       "image": "assets/products/premiership-display-case-lid.jpg",
+      "gallery": [
+        "assets/products/premiership-display-case-lid.jpg",
+        "assets/products/premiership-display-case.jpg",
+        "assets/products/premiership-display-case-medal.jpg",
+        "assets/products/premiership-display-case-open.jpg"
+      ],
       "imageMode": "real",
       "cta": "Send case details",
       "purchaseMode": "enquiry",
