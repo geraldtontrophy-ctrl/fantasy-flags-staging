@@ -1,28 +1,28 @@
 {
-  "source": "FantasyFlagsAU X/Twitter published-ledger manual export",
+  "source": "/home/geral/fantasy-flags/social/published-ledger.json",
   "updatedAt": "2026-07-16",
   "profileUrl": "https://x.com/FantasyFlagsAU",
   "items": [
     {
-      "id": "2077361580526956901",
-      "title": "Xerri + Drew",
-      "summary": "for Anderson, Rankine + Cripps. Vote on the verdict.",
+      "id": "2077635815765930041",
+      "title": "Jack Steele",
+      "summary": "for Adam Cerra. Vote on the verdict.",
       "status": "Latest",
+      "url": "https://x.com/FantasyFlagsAU/status/2077635815765930041"
+    },
+    {
+      "id": "2077361580526956901",
+      "title": "Tristan Xerri + Willem Drew",
+      "summary": "for Noah Anderson + Izak Rankine + Patrick Cripps. Vote on the verdict.",
+      "status": "Court",
       "url": "https://x.com/FantasyFlagsAU/status/2077361580526956901"
     },
     {
       "id": "2076647241985781854",
       "title": "Jarman Impey",
-      "summary": "for Jack Macrae + Nick Vlastuin. Fair deal or fraud?",
+      "summary": "for Jack Macrae + Nick Vlastuin. Vote on the verdict.",
       "status": "Court",
       "url": "https://x.com/FantasyFlagsAU/status/2076647241985781854"
-    },
-    {
-      "id": "2075790761799700526",
-      "title": "Darcy Wilson",
-      "summary": "for Dan Houston. The jury is still out.",
-      "status": "Court",
-      "url": "https://x.com/FantasyFlagsAU/status/2075790761799700526"
     }
   ]
 }
