@@ -1,13 +1,20 @@
 {
   "source": "/home/geral/fantasy-flags/social/published-ledger.json",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "profileUrl": "https://x.com/FantasyFlagsAU",
   "items": [
+    {
+      "id": "2077983820905894084",
+      "title": "Tim Taranto + Will Hayward",
+      "summary": "for Angus Sheldrick + Toby Greene. Vote on the verdict.",
+      "status": "Latest",
+      "url": "https://x.com/FantasyFlagsAU/status/2077983820905894084"
+    },
     {
       "id": "2077635815765930041",
       "title": "Jack Steele",
       "summary": "for Adam Cerra. Vote on the verdict.",
-      "status": "Latest",
+      "status": "Court",
       "url": "https://x.com/FantasyFlagsAU/status/2077635815765930041"
     },
     {
@@ -16,13 +23,6 @@
       "summary": "for Noah Anderson + Izak Rankine + Patrick Cripps. Vote on the verdict.",
       "status": "Court",
       "url": "https://x.com/FantasyFlagsAU/status/2077361580526956901"
-    },
-    {
-      "id": "2076647241985781854",
-      "title": "Jarman Impey",
-      "summary": "for Jack Macrae + Nick Vlastuin. Vote on the verdict.",
-      "status": "Court",
-      "url": "https://x.com/FantasyFlagsAU/status/2076647241985781854"
     }
   ]
 }
